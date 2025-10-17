@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy error</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+  :root {
+    --bg-color: #fafafa;
+    --text-color: #3c4043;
+    --heading-color: #202124;
+    --subtext-color: #5f6368;
+    --button-bg: #1a73e8;
+    --button-hover: #1765c0;
+    --panel-bg: #f8f9fa;
+    --link-color: #1a73e8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #202124;
+      --text-color: #e8eaed;
+      --heading-color: #ffffff;
+      --subtext-color: #9aa0a6;
+      --button-bg: #8ab4f8;
+      --button-hover: #669df6;
+      --panel-bg: #292a2d;
+      --link-color: #8ab4f8;
+    }
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+  }
+
+  p {
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  .error-code {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--subtext-color);
+  }
+
+  button {
+    background: var(--button-bg);
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 24px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background: var(--button-hover);
+  }
+
+  .advanced {
+    margin-top: 20px;
+    color: var(--link-color);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .advanced:hover {
+    text-decoration: underline;
+  }
+
+  .advanced-section {
+    display: none;
+    margin-top: 10px;
+    background: var(--panel-bg);
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .proceed {
+    color: var(--link-color);
+    cursor: pointer;
+  }
+
+  .proceed:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <img src="https://files.catbox.moe/3cqlsl.png" alt="Error Icon" class="icon">
+    <h1>Your connection is not private</h1>
+    <p>Attackers might be trying to steal your information from <strong>wikipedia.org</strong> (for example, passwords, messages, or credit cards).</p>
+    <div class="error-code">NET::ERR_CERT_AUTHORITY_INVALID</div>
+    <div class="advanced" id="adv-btn">Advanced</div>
+    <div class="advanced-section" id="adv-section">
+      <p>This server could not prove that it is <strong>wikipedia.org</strong>; its security certificate is not trusted by your device’s operating system.</p>
+      <p><span class="proceed" id="proceed">Proceed to wikipedia.org (unsafe)</span></p>
+    </div>
+    <button onclick="window.location.reload()">Reload</button>
+  </div>
+
+  <script>
+    const advBtn = document.getElementById('adv-btn');
+    const advSection = document.getElementById('adv-section');
+    const proceed = document.getElementById('proceed');
+
+    advBtn.addEventListener('click', () => {
+      advSection.style.display = advSection.style.display === 'block' ? 'none' : 'block';
+    });
+
+    proceed.addEventListener('click', () => {
+  window.location.href = 'https://wikipedia.org';
+});
+  </script>
+</body>
+</html>
